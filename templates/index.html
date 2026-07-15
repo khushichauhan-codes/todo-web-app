@@ -9,8 +9,12 @@
         input[type=text] { flex: 1; padding: 10px; }
         button { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
         ul { list-style: none; padding: 0; }
-        li { background: white; margin: 8px 0; padding: 12px; display: flex; justify-content: space-between; border-radius: 5px; }
-        a { color: red; text-decoration: none; }
+        li { background: white; margin: 8px 0; padding: 12px; display: flex; justify-content: space-between; align-items: center; border-radius: 5px; }
+        .done { text-decoration: line-through; color: gray; }
+        .task-text { flex: 1; cursor: pointer; }
+        .actions a { margin-left: 10px; text-decoration: none; font-size: 14px; }
+        .delete-link { color: red; }
+        .complete-link { color: green; }
     </style>
 </head>
 <body>
@@ -22,8 +26,15 @@
     <ul>
         {% for task in tasks %}
         <li>
-            {{ task }}
-            <a href="/delete/{{ loop.index0 }}">Delete</a>
+            <span class="task-text {% if task.done %}done{% endif %}">
+                {{ task.name }}
+            </span>
+            <span class="actions">
+                <a class="complete-link" href="/complete/{{ loop.index0 }}">
+                    {% if task.done %}Undo{% else %}Done{% endif %}
+                </a>
+                <a class="delete-link" href="/delete/{{ loop.index0 }}">Delete</a>
+            </span>
         </li>
         {% endfor %}
     </ul>
