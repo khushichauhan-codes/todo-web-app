@@ -33,7 +33,7 @@ python3 app.py
 4. Open browser and go to `http://127.0.0.1:5000`
 
 ## Screenshots
-(Add a screenshot here)
+![To-Do App Screenshot](screenshot.png)
 
 ## Author
 Khushi Chauhan
